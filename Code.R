@@ -7,7 +7,7 @@ library(strucchange)
 library(gridExtra)
 
 # import the dataset
-data <- read_delim("SolarPowerGenerationPrediction/Realisierte_Erzeugung_20150101_20230630_monthly.csv", delim = ";", locale = locale(decimal_mark = ","))
+data <- read_delim("SolarPowerGenerationPrediction/Realised_Power_Generation_20150101_20230630_monthly.csv", delim = ";", locale = locale(decimal_mark = ","))
 
 # view first few rows
 print(data)
@@ -246,7 +246,6 @@ train_diff <- train %>%
 
 # One significant spike at the seasonal lag 12 in ACF
 # decaying seasonla lags in pacfs --> GUESS (0,0,0)(0,1,1)
-# According to Oreilly book 
 arima_fit <- train %>%
   model(
     arima_guess = ARIMA(log(GWh) ~ pdq(0,0,0) + PDQ(0,1,1)),
